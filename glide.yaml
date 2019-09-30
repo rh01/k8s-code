@@ -1,0 +1,4 @@
+package: kubernetes-client-project
+import:
+  - package: k8s.io/client-go
+    version: v12.0
