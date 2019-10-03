@@ -31,6 +31,8 @@ import (
 	"k8s.io/klog"
 )
 
+// # 包含：NewSharedInformer、WaitForCacheSync、Run、HasSynced
+
 // SharedInformer provides eventually consistent linkage of its
 // clients to the authoritative state of a given collection of
 // objects.  An object is identified by its API group, kind/resource,

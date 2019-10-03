@@ -26,6 +26,7 @@ import (
 	restclient "k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/pager"
 )
+//  # 包含：ListerWatcher、ListWatch、List、Watch
 
 // Lister is any object that knows how to perform an initial list.
 type Lister interface {

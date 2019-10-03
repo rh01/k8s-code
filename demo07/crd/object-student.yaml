@@ -1,0 +1,7 @@
+apiVersion: readailib.kubernetes.io/v1
+kind: Student
+metadata:
+  name: object-student
+spec:
+  name: "申恒"
+  school: "常青藤"

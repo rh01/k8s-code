@@ -16,6 +16,7 @@ limitations under the License.
 
 package cache
 
+//  包含：Indexer、MetaNamespaceIndexFunc
 import (
 	"fmt"
 

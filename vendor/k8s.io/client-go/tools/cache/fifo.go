@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 package cache
+// 包含 ：Queue、FIFO、NewFIFO
 
 import (
 	"errors"
@@ -43,6 +44,8 @@ func (e ErrRequeue) Error() string {
 	return e.Err.Error()
 }
 
+// DeltaFIFO的类型是Queue接口，Reflector.store是Store接口，
+// Queue接口是一个存储队列，Process的方法执行Queue.Pop出来的数据对象，
 // Queue is exactly like a Store, but has a Pop() method too.
 type Queue interface {
 	Store

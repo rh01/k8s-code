@@ -16,6 +16,7 @@ limitations under the License.
 
 package cache
 
+// 包含 Config、Run、processLoop、NewInformer、NewIndexerInformer
 import (
 	"sync"
 	"time"

@@ -22,7 +22,9 @@ import (
 
 	"k8s.io/apimachinery/pkg/api/meta"
 )
-
+// Store是一个通用的存储接口，Reflector通过watch server的方式更新数据到store中，
+// store给Reflector提供本地的缓存，让Reflector可以像消息队列一样的工作。
+// Store实现的是一种可以准确的写入对象和获取对象的机制。
 // Store is a generic object storage interface. Reflector knows how to watch a server
 // and update a store. A generic store is provided, which allows Reflector to be used
 // as a local caching system, and an LRU store, which allows Reflector to work like a
@@ -109,6 +111,10 @@ func SplitMetaNamespaceKey(key string) (namespace, name string, err error) {
 // cache responsibilities are limited to:
 //	1. Computing keys for objects via keyFunc
 //  2. Invoking methods of a ThreadSafeStorage interface
+// cache实现了store的接口，而cache的具体实现又是调用ThreadSafeStore接口来实现功能的。
+// cache的功能主要有以下两点：
+// 通过keyFunc计算对象的key
+// 调用ThreadSafeStorage接口的方法
 type cache struct {
 	// cacheStorage bears the burden of thread safety for the cache
 	cacheStorage ThreadSafeStore

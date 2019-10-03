@@ -1,0 +1,52 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  # offical crd: https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#create-a-customresourcedefinition
+  # name must match the spec fields below, and be in the form: <plural>.<group>
+  # 命名规则如下：复数名.分组名，即students为复数名，而分组名可以看做是一个域名
+  name: students.readailib.kubernetes.io
+  # 需要注意的是：https://github.com/kubernetes/enhancements/pull/1111
+  annotations:
+    "api-approved.kubernetes.io": "https://github.com/kubernetes/kubernetes/pull/78458"
+spec:
+  # group name to use for REST API: /apis/<group>/<version>
+  # 根据上面你定义的做就可以，然是需要注意的是，这里的我们的group名称是为了
+  # 方便访问k8s的REST API来做的，即访问路径为/apis/<group>/<version>
+  group: readailib.kubernetes.io
+  # list of versions supported by this CustomResourceDefinition
+  versions:
+    - name: v1
+      # Each version can be enabled/disabled by Served flag.
+      served: true
+      # One and only one version must be marked as the storage version.
+      # 只有一个版本能标注为storage
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                cronSpec:
+                  type: string
+                image:
+                  type: string
+                replicas:
+                  type: integer
+  # either Namespaced or Cluster
+  scope: Namespaced
+  names:
+    # plural name to be used in the URL: /apis/<group>/<version>/<plural>
+    # 复数名，保持与你之前定义的一致即可
+    plural: students
+    # singular name to be used as an alias on the CLI and for display
+    # 单数名字
+    singular: student
+    # kind is normally the CamelCased singular type. Your resource manifests use this.
+    # 类型名
+    kind: Student
+    # shortNames allow shorter string to match your resource on the CLI
+    # 简称
+    shortNames:
+      - stu

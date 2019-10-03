@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+// 包括 NewDeltaFIFO、DeltaFIFO、AddIfNotPresent
 
 package cache
 
@@ -72,6 +73,12 @@ func NewDeltaFIFO(keyFunc KeyFunc, knownObjects KeyListerGetter) *DeltaFIFO {
 // DeltaFIFO is a producer-consumer queue, where a Reflector is
 // intended to be the producer, and the consumer is whatever calls
 // the Pop() method.
+// DeltaFIFO 是一个生产者消费者队列，其中Refector往往是一个生产者，消费者调用Pop方法
+// DeltaFIFO 用于以下场景：
+// 希望对象最多处理一次
+// 处理对象时，你想看到自你上次处理以来发生的所有事情
+// 你想处理对象的删除
+// 你可能周期性的重新处理对象
 //
 // DeltaFIFO solves this use case:
 //  * You want to process every object change (delta) at most once.

@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	meta_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/client-go/util/homedir"
@@ -38,7 +38,7 @@ func main() {
 	}
 
 	// 通过访问corev1来遍历pod
-	podList, err := clientset.CoreV1().Pods("default").List(meta_v1.ListOptions{})
+	podList, err := clientset.CoreV1().Pods("default").List(metav1.ListOptions{})
 	if err != nil {
 		panic(err.Error())
 	}
